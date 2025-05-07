@@ -36,3 +36,20 @@ content > div:nth-child(odd) {
     display: flex;
     align-items: stretch;
 }
+
+.recipeCard {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid #185c35;
+    outline: .5em solid #f9f9f9;
+    background-color: #f9f9f9;
+    padding: 1.5em;
+    text-wrap: wrap;
+}
+
+.footer {
+    background-color: black;
+}
