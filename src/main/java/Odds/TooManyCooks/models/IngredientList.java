@@ -5,17 +5,15 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Measurement {
+public class IngredientList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToMany(mappedBy = "measurement")
+    @OneToMany(mappedBy = "ingredientList")
     private Set<IngredientCard> ingredientCards;
 
-    private String name;
-
-    public Measurement() {
+    public IngredientList() {
     }
 
     public Integer getId() {
@@ -32,13 +30,5 @@ public class Measurement {
 
     public void setIngredientCards(Set<IngredientCard> ingredientCards) {
         this.ingredientCards = ingredientCards;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

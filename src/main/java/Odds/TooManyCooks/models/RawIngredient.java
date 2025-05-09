@@ -12,4 +12,33 @@ public class RawIngredient {
 
     @OneToMany(mappedBy = "rawIngredient")
     private Set<IngredientCard> ingredientCards;
+
+    private String name;
+
+    public RawIngredient() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Set<IngredientCard> getIngredientCards() {
+        return ingredientCards;
+    }
+
+    public void setIngredientCards(Set<IngredientCard> ingredientCards) {
+        this.ingredientCards = ingredientCards;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
