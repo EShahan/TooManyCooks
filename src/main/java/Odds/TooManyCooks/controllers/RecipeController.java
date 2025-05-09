@@ -1,9 +1,6 @@
 package Odds.TooManyCooks.controllers;
 
-import Odds.TooManyCooks.models.IngredientCard;
-import Odds.TooManyCooks.models.Measurement;
 import Odds.TooManyCooks.models.data.IngredientCardRepository;
-import Odds.TooManyCooks.models.data.IngredientListRepository;
 import Odds.TooManyCooks.models.data.MeasurementRepository;
 import Odds.TooManyCooks.models.data.RawIngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +16,6 @@ public class RecipeController {
     private IngredientCardRepository ingredientCardRepository;
     @Autowired
     private MeasurementRepository measurementRepository;
-    @Autowired
-    private IngredientListRepository ingredientListRepository;
     @Autowired
     private RawIngredientRepository rawIngredientRepository;
 

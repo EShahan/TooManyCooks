@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface IngredientCardRepository extends CrudRepository<IngredientCard, Integer> {
     @Query(value = "SELECT *\n" +
             "FROM ingredient_card\n" +
-            "WHERE ingredient_card.ingredient_list_id = :listId",
+            "WHERE ingredient_card.recipe_card_id = :listId",
     nativeQuery = true)
     Iterable<IngredientCard> findIngredientCardByList(@Param("listId") Integer listId);
 }

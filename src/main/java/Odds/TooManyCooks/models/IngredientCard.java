@@ -13,8 +13,8 @@ public class IngredientCard {
     private RawIngredient rawIngredient;
     @ManyToOne @MapsId("measurementId")
     private Measurement measurement;
-    @ManyToOne @MapsId("ingredientListId")
-    private IngredientList ingredientList;
+    @ManyToOne @MapsId("recipeCardId")
+    private RecipeCard recipeCard;
 
     public IngredientCard() {
         id = new IngredientCardId();
@@ -44,11 +44,11 @@ public class IngredientCard {
         this.measurement = measurement;
     }
 
-    public IngredientList getIngredientList() {
-        return ingredientList;
+    public RecipeCard getRecipeCard() {
+        return recipeCard;
     }
 
-    public void setIngredientList(IngredientList ingredientList) {
-        this.ingredientList = ingredientList;
+    public void setRecipeCard(RecipeCard recipeCard) {
+        this.recipeCard = recipeCard;
     }
 }

@@ -1,13 +1,10 @@
 package Odds.TooManyCooks.security;
 
 import Odds.TooManyCooks.models.IngredientCard;
-import Odds.TooManyCooks.models.IngredientList;
+import Odds.TooManyCooks.models.RecipeCard;
 import Odds.TooManyCooks.models.Measurement;
 import Odds.TooManyCooks.models.RawIngredient;
-import Odds.TooManyCooks.models.data.IngredientCardRepository;
-import Odds.TooManyCooks.models.data.IngredientListRepository;
-import Odds.TooManyCooks.models.data.MeasurementRepository;
-import Odds.TooManyCooks.models.data.RawIngredientRepository;
+import Odds.TooManyCooks.models.data.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -28,7 +25,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     private IngredientCardRepository ingredientCardRepository;
 
     @Autowired
-    private IngredientListRepository ingredientListRepository;
+    private RecipeCardRepository recipeCardRepository;
 
     @Override
     @Transactional
@@ -56,28 +53,28 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         whole.setName("Whole");
         measurementRepository.save(whole);
 
-        IngredientList soupList = new IngredientList();
-        ingredientListRepository.save(soupList);
+        RecipeCard soupList = new RecipeCard();
+        recipeCardRepository.save(soupList);
 
-        IngredientList escargotList = new IngredientList();
-        ingredientListRepository.save(escargotList);
+        RecipeCard escargotList = new RecipeCard();
+        recipeCardRepository.save(escargotList);
 
         IngredientCard soupCard = new IngredientCard();
         soupCard.setRawIngredient(onion);
         soupCard.setMeasurement(tbsp);
-        soupCard.setIngredientList(soupList);
+        soupCard.setRecipeCard(soupList);
         ingredientCardRepository.save(soupCard);
 
         IngredientCard soupCard2 = new IngredientCard();
         soupCard2.setRawIngredient(carrot);
         soupCard2.setMeasurement(whole);
-        soupCard2.setIngredientList(soupList);
+        soupCard2.setRecipeCard(soupList);
         ingredientCardRepository.save(soupCard2);
 
         IngredientCard escargot = new IngredientCard();
         escargot.setRawIngredient(snail);
         escargot.setMeasurement(whole);
-        escargot.setIngredientList(escargotList);
+        escargot.setRecipeCard(escargotList);
         ingredientCardRepository.save(escargot);
     }
 }

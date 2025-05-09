@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class IngredientCardId implements Serializable {
     private Integer rawIngredientId;
     private Integer measurementId;
-    private Integer ingredientListId;
+    private Integer recipeCardId;
 //    private Integer amount;
 
     public IngredientCardId() {
@@ -30,15 +30,15 @@ public class IngredientCardId implements Serializable {
         this.measurementId = measurementId;
     }
 
-    public Integer getIngredientListId() {
-        return ingredientListId;
+    public Integer getRecipeCardId() {
+        return recipeCardId;
     }
 
-    public void setIngredientListId(Integer ingredientListId) {
-        this.ingredientListId = ingredientListId;
+    public void setRecipeCardId(Integer recipeCardId) {
+        this.recipeCardId = recipeCardId;
     }
 
-    //    public Integer getAmount() {
+//    public Integer getAmount() {
 //        return amount;
 //    }
 //
