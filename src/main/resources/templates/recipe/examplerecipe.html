@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link th:href="@{styles.css}" rel="stylesheet">
+  <link th:href="@{/styles.css}" rel="stylesheet">
 </head>
 <body>
 <div class="wrapper">
@@ -38,18 +38,10 @@
       </div>
       <div id="ingredientCard">
         <h3>Ingredients</h3>
-        <ul>
-          <li>1 quart of stock</li>
-          <li>3 onions</li>
-          <li>2 cans of tomatoes</li>
-          <li>5 medium sized potatoes</li>
-          <li>4 cloves of garlic</li>
-          <li>1 tablespoon of salt</li>
-          <li>4 oz of milk</li>
-          <li>16 oz of pasta</li>
-          <li>2 tsp of basil</li>
-          <li>1 tablespoon of apple vinegar</li>
-          <li>2 tablespoon of olive oil</li>
+        <ul th:each="ingredient : ${ingredients}">
+          <li>
+            <span th:text="${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></span>
+          </li>
         </ul>
       </div>
       <div id="instructionCard">
