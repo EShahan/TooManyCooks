@@ -24,13 +24,13 @@
       <div class="row" id="statPhotoCard">
         <div id="statCard">
           <div id="ratingCard">Rating Img Here?</div>
-          <p><b>Author:</b> Eric</p>
-          <p><b>Prep Time:</b> Not Long</p>
-          <p><b>Cook Time:</b> Now</p>
-          <p><b>Total Time:</b> Just Make The Soup</p>
-          <p><b>Yield:</b> 1 Serving. Too good not to eat it all.</p>
-          <p><b>Method:</b> With a Kitchen</p>
-          <p><b>Cuisine:</b> Good</p>
+          <p th:utext="'&lt;strong&gt;Author: &lt;/strong&gt;' + ${recipeCard.statCard.author}"></p>
+          <p th:utext="'&lt;strong&gt;Prep Time: &lt;/strong&gt;' + ${recipeCard.statCard.prepTime}"></p>
+          <p th:utext="'&lt;strong&gt;Cook Time: &lt;/strong&gt;' + ${recipeCard.statCard.cookTime}"></p>
+          <p th:utext="'&lt;strong&gt;Total Time: &lt;/strong&gt;' + ${recipeCard.statCard.totalTime}"></p>
+          <p th:utext="'&lt;strong&gt;Yield: &lt;/strong&gt;' + ${recipeCard.statCard.yield}"></p>
+          <p th:utext="'&lt;strong&gt;Method: &lt;/strong&gt;' + ${recipeCard.statCard.method}"></p>
+          <p th:utext="'&lt;strong&gt;Cuisine: &lt;/strong&gt;' + ${recipeCard.statCard.cuisine}"></p>
         </div>
         <div>
           <img th:src="@{/Images/PaintBrush-Logo.png}" id="cardPhoto"/>

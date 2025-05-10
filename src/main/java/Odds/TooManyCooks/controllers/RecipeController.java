@@ -3,6 +3,7 @@ package Odds.TooManyCooks.controllers;
 import Odds.TooManyCooks.models.data.IngredientCardRepository;
 import Odds.TooManyCooks.models.data.MeasurementRepository;
 import Odds.TooManyCooks.models.data.RawIngredientRepository;
+import Odds.TooManyCooks.models.data.RecipeCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("Recipe")
 public class RecipeController {
     @Autowired
+    private RecipeCardRepository recipeCardRepository;
+    @Autowired
     private IngredientCardRepository ingredientCardRepository;
     @Autowired
     private MeasurementRepository measurementRepository;
@@ -21,6 +24,7 @@ public class RecipeController {
 
     @GetMapping("ExampleRecipe")
     public String ExampleRecipe(Model model) {
+        model.addAttribute("recipeCard", recipeCardRepository.findRecipeCardById(1));
         model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(1));
         return "recipe/examplerecipe.html";
     }

@@ -1,9 +1,6 @@
 package Odds.TooManyCooks.security;
 
-import Odds.TooManyCooks.models.IngredientCard;
-import Odds.TooManyCooks.models.RecipeCard;
-import Odds.TooManyCooks.models.Measurement;
-import Odds.TooManyCooks.models.RawIngredient;
+import Odds.TooManyCooks.models.*;
 import Odds.TooManyCooks.models.data.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
     @Autowired
     private RecipeCardRepository recipeCardRepository;
+
+    @Autowired
+    private StatCardRepository statCardRepository;
 
     @Override
     @Transactional
@@ -53,11 +53,22 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         whole.setName("Whole");
         measurementRepository.save(whole);
 
+        StatCard statCard = new StatCard();
+        statCard.setAuthor("Eric");
+        statCard.setPrepTime("Not Long");
+        statCard.setCookTime("Now");
+        statCard.setTotalTime("Just Make The Soup");
+        statCard.setYield("1 Serving. Too good not to eat it all.");
+        statCard.setMethod("With a Kitchen");
+        statCard.setCuisine("Good");
+        statCardRepository.save(statCard);
+
         RecipeCard soupList = new RecipeCard();
+        soupList.setStatCard(statCard);
         recipeCardRepository.save(soupList);
 
-        RecipeCard escargotList = new RecipeCard();
-        recipeCardRepository.save(escargotList);
+//        RecipeCard escargotList = new RecipeCard();
+//        recipeCardRepository.save(escargotList);
 
         IngredientCard soupCard = new IngredientCard();
         soupCard.setRawIngredient(onion);
@@ -71,10 +82,10 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         soupCard2.setRecipeCard(soupList);
         ingredientCardRepository.save(soupCard2);
 
-        IngredientCard escargot = new IngredientCard();
-        escargot.setRawIngredient(snail);
-        escargot.setMeasurement(whole);
-        escargot.setRecipeCard(escargotList);
-        ingredientCardRepository.save(escargot);
+//        IngredientCard escargot = new IngredientCard();
+//        escargot.setRawIngredient(snail);
+//        escargot.setMeasurement(whole);
+//        escargot.setRecipeCard(escargotList);
+//        ingredientCardRepository.save(escargot);
     }
 }
