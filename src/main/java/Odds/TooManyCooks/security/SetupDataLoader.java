@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
-    boolean alreadySetup = false;
+    boolean alreadySetup = true;
 
     @Autowired
     private RawIngredientRepository rawIngredientRepository;

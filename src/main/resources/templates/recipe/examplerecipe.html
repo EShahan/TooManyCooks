@@ -47,20 +47,7 @@
       <div id="instructionCard">
         <h3>Instructions</h3>
         <ol>
-          <li>
-            Place the following ingredients into pot:
-            Stock, Onions, Tomatoes, Olive Oil, Salt, Pasta, Basil, and Potatoes
-          </li>
-          <li>
-            Cover with lid and cook on high pressure for 5 minutes.
-            Make certain to add the liquid before you begin to heat it.
-          </li>
-          <li>
-            Slowly stir in Milk and Garlic a little at a time to make a great stew
-          </li>
-          <li>
-            Let cool for another 5 minutes if you can bear it. Enjoy!
-          </li>
+          <li th:each="cardInstruction: ${cardInstructions}" th:text="${cardInstruction.instructionStep}"></li>
         </ol>
       </div>
     </div>
