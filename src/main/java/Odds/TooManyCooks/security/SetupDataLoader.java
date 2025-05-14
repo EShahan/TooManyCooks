@@ -68,6 +68,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
         RecipeCard soupList = new RecipeCard();
         soupList.setStatCard(statCard);
+        soupList.setRecipeName("The Best Soup Ever");
         recipeCardRepository.save(soupList);
 
         InstructionCard instructionCard1 = new InstructionCard();
@@ -91,12 +92,14 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         IngredientCard soupCard = new IngredientCard();
         soupCard.setRawIngredient(onion);
         soupCard.setMeasurement(tbsp);
+        soupCard.setAmount(2);
         soupCard.setRecipeCard(soupList);
         ingredientCardRepository.save(soupCard);
 
         IngredientCard soupCard2 = new IngredientCard();
         soupCard2.setRawIngredient(carrot);
         soupCard2.setMeasurement(whole);
+        soupCard2.setAmount(5);
         soupCard2.setRecipeCard(soupList);
         ingredientCardRepository.save(soupCard2);
     }

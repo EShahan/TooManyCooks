@@ -20,7 +20,7 @@
     <div>Saucy Instructions 1</div>
     <div>Saucy Instructions 2</div>
     <div id="recipeCard">
-      <h2 id="recipeHeader">The Best Soup Ever</h2>
+      <h2 id="recipeHeader" th:text="${recipeCard.recipeName}"></h2>
       <div class="row" id="statPhotoCard">
         <div id="statCard">
           <div id="ratingCard">Rating Img Here?</div>
@@ -38,10 +38,8 @@
       </div>
       <div id="ingredientCard">
         <h3>Ingredients</h3>
-        <ul th:each="ingredient : ${ingredients}">
-          <li>
-            <span th:text="${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></span>
-          </li>
+        <ul>
+          <li th:each="ingredient : ${ingredients}" th:text="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></li>
         </ul>
       </div>
       <div id="instructionCard">

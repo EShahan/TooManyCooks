@@ -15,6 +15,7 @@ public class IngredientCard {
     private Measurement measurement;
     @ManyToOne @MapsId("recipeCardId")
     private RecipeCard recipeCard;
+    private Integer amount;
 
     public IngredientCard() {
         id = new IngredientCardId();
@@ -50,5 +51,13 @@ public class IngredientCard {
 
     public void setRecipeCard(RecipeCard recipeCard) {
         this.recipeCard = recipeCard;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 }

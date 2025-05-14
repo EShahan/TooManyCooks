@@ -21,6 +21,8 @@ public class RecipeCard {
     @OneToMany(mappedBy = "recipeCard")
     private Set<InstructionCard> instructionCards;
 
+    private String recipeName;
+
     public RecipeCard() {
     }
 
@@ -54,5 +56,13 @@ public class RecipeCard {
 
     public void setInstructionCards(Set<InstructionCard> instructionCards) {
         this.instructionCards = instructionCards;
+    }
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 }
