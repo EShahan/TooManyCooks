@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
-    boolean alreadySetup = true;
+    boolean alreadySetup = false;
 
     @Autowired
     private RawIngredientRepository rawIngredientRepository;
@@ -26,6 +26,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
     @Autowired
     private StatCardRepository statCardRepository;
+
+    @Autowired
+    private InstructionCardRepository instructionCardRepository;
 
     @Override
     @Transactional
@@ -67,8 +70,23 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         soupList.setStatCard(statCard);
         recipeCardRepository.save(soupList);
 
-//        RecipeCard escargotList = new RecipeCard();
-//        recipeCardRepository.save(escargotList);
+        InstructionCard instructionCard1 = new InstructionCard();
+        instructionCard1.setInstructionStep("Get Pots and Pans");
+        instructionCard1.setRecipeCard(soupList);
+        instructionCard1.setInstructionOrder(1);
+        instructionCardRepository.save(instructionCard1);
+
+        InstructionCard instructionCard2 = new InstructionCard();
+        instructionCard2.setInstructionStep("Meditate");
+        instructionCard2.setRecipeCard(soupList);
+        instructionCard2.setInstructionOrder(2);
+        instructionCardRepository.save(instructionCard2);
+
+        InstructionCard instructionCard3 = new InstructionCard();
+        instructionCard3.setInstructionStep("Let The Universe Guide You To Make The Best Soup");
+        instructionCard3.setRecipeCard(soupList);
+        instructionCard3.setInstructionOrder(3);
+        instructionCardRepository.save(instructionCard3);
 
         IngredientCard soupCard = new IngredientCard();
         soupCard.setRawIngredient(onion);
@@ -81,11 +99,5 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         soupCard2.setMeasurement(whole);
         soupCard2.setRecipeCard(soupList);
         ingredientCardRepository.save(soupCard2);
-
-//        IngredientCard escargot = new IngredientCard();
-//        escargot.setRawIngredient(snail);
-//        escargot.setMeasurement(whole);
-//        escargot.setRecipeCard(escargotList);
-//        ingredientCardRepository.save(escargot);
     }
 }
