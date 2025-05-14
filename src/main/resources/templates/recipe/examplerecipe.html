@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link th:href="@{/styles.css}" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+  <div class="navbar">
+    Navbar
+  </div>
+  <div class="header">
+    <h1>Too Many Cooks</h1>
+  </div>
+  <div class="content">
+    <div>History 1</div>
+    <div>History 2</div>
+    <div>History 3</div>
+    <div>Saucy Instructions 1</div>
+    <div>Saucy Instructions 2</div>
+    <div id="recipeCard">
+      <h2 id="recipeHeader" th:text="${recipeCard.recipeName}"></h2>
+      <div class="row" id="statPhotoCard">
+        <div id="statCard">
+          <div id="ratingCard">Rating Img Here?</div>
+          <p th:utext="'&lt;strong&gt;Author: &lt;/strong&gt;' + ${recipeCard.statCard.author}"></p>
+          <p th:utext="'&lt;strong&gt;Prep Time: &lt;/strong&gt;' + ${recipeCard.statCard.prepTime}"></p>
+          <p th:utext="'&lt;strong&gt;Cook Time: &lt;/strong&gt;' + ${recipeCard.statCard.cookTime}"></p>
+          <p th:utext="'&lt;strong&gt;Total Time: &lt;/strong&gt;' + ${recipeCard.statCard.totalTime}"></p>
+          <p th:utext="'&lt;strong&gt;Yield: &lt;/strong&gt;' + ${recipeCard.statCard.yield}"></p>
+          <p th:utext="'&lt;strong&gt;Method: &lt;/strong&gt;' + ${recipeCard.statCard.method}"></p>
+          <p th:utext="'&lt;strong&gt;Cuisine: &lt;/strong&gt;' + ${recipeCard.statCard.cuisine}"></p>
+        </div>
+        <div>
+          <img th:src="@{/Images/PaintBrush-Logo.png}" id="cardPhoto"/>
+        </div>
+      </div>
+      <div id="ingredientCard">
+        <h3>Ingredients</h3>
+        <ul>
+          <li th:each="ingredient : ${ingredients}" th:text="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></li>
+        </ul>
+      </div>
+      <div id="instructionCard">
+        <h3>Instructions</h3>
+        <ol>
+          <li th:each="cardInstruction: ${cardInstructions}" th:text="${cardInstruction.instructionStep}"></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    Footer
+  </div>
+
+</div>
+</body>
+</html>
