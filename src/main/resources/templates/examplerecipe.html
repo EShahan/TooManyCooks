@@ -11,31 +11,72 @@
     Navbar
   </div>
   <div class="header">
-    SOUP
+    <h1>Too Many Cooks</h1>
   </div>
   <div class="content">
     <div>History 1</div>
     <div>History 2</div>
     <div>History 3</div>
-    <div class="recipeAndPhoto">
+    <div>Saucy Instructions 1</div>
+    <div>Saucy Instructions 2</div>
+    <div id="recipeCard">
+      <h2 id="recipeHeader">The Best Soup Ever</h2>
+      <div class="row" id="statPhotoCard">
+        <div id="statCard">
+          <div id="ratingCard">Rating Img Here?</div>
+          <p><b>Author:</b> Eric</p>
+          <p><b>Prep Time:</b> Not Long</p>
+          <p><b>Cook Time:</b> Now</p>
+          <p><b>Total Time:</b> Just Make The Soup</p>
+          <p><b>Yield:</b> 1 Serving. Too good not to eat it all.</p>
+          <p><b>Method:</b> With a Kitchen</p>
+          <p><b>Cuisine:</b> Good</p>
+        </div>
+        <div>
+          <img th:src="@{/Images/PaintBrush-Logo.png}" id="cardPhoto"/>
+        </div>
+      </div>
+      <div id="ingredientCard">
+        <h3>Ingredients</h3>
         <ul>
-          <li>Ingredient 1</li>
-          <li>Ingredient 2</li>
-          <li>Ingredient 3</li>
-          <li>Ingredient 4</li>
-          <li>Ingredient 5</li>
+          <li>1 quart of stock</li>
+          <li>3 onions</li>
+          <li>2 cans of tomatoes</li>
+          <li>5 medium sized potatoes</li>
+          <li>4 cloves of garlic</li>
+          <li>1 tablespoon of salt</li>
+          <li>4 oz of milk</li>
+          <li>16 oz of pasta</li>
+          <li>2 tsp of basil</li>
+          <li>1 tablespoon of apple vinegar</li>
+          <li>2 tablespoon of olive oil</li>
         </ul>
-      <div>Short Instructions EG: Baking Times</div>
-      <div>
-        <img th:src="@{/Images/PaintBrush-Logo.png}" class="recipePhoto"/>
+      </div>
+      <div id="instructionCard">
+        <h3>Instructions</h3>
+        <ol>
+          <li>
+            Place the following ingredients into pot:
+            Stock, Onions, Tomatoes, Olive Oil, Salt, Pasta, Basil, and Potatoes
+          </li>
+          <li>
+            Cover with lid and cook on high pressure for 5 minutes.
+            Make certain to add the liquid before you begin to heat it.
+          </li>
+          <li>
+            Slowly stir in Milk and Garlic a little at a time to make a great stew
+          </li>
+          <li>
+            Let cool for another 5 minutes if you can bear it. Enjoy!
+          </li>
+        </ol>
       </div>
     </div>
-    <div>Instructions 1</div>
-    <div>Instructions 2</div>
   </div>
   <div class="footer">
     Footer
   </div>
+
 </div>
 </body>
 </html>
