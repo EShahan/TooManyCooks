@@ -18,6 +18,10 @@ public class RawIngredient {
     public RawIngredient() {
     }
 
+    public RawIngredient(String name) {
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
