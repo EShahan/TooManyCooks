@@ -41,14 +41,19 @@ public class RecipeController {
         model.addAttribute(new InstructionCard());
         return "recipe/add";
     }
-
     @PostMapping("Add")
-    public String processAddRecipe(@RequestParam String ingredient, @RequestParam String measurement,
+    public String processAddRecipe(@RequestParam String ingredient, @RequestParam String measurement, @RequestParam Integer amount,
                                    @ModelAttribute @Valid RecipeCard newRecipe, @ModelAttribute @Valid StatCard newStatCard,
                                    @ModelAttribute InstructionCard newInstructionCard,
                                    Error errors, Model model) {
+        newRecipe.setStatCard(newStatCard);
+        recipeCardRepository.save(newRecipe);
         IngredientCard newIngredientCard = new IngredientCard();
+        newStatCard.setAuthor("Me"); //PLACEHOLDER! TODO: Once UserDetails is implemented, this should retrieve the user's name
         statCardRepository.save(newStatCard);
+        // Uses optional queries to check if the name of our ingredient or measurement already exists
+        // If it exists, it sets the ingredientCard to that ingredient or measurement
+        // If it does not, it creates a new object of it and sets that object to the ingredientCard
         rawIngredientRepository.findRawIngredientByName(ingredient).ifPresentOrElse(
                 newIngredientCard::setRawIngredient,
                 () -> {
@@ -64,11 +69,18 @@ public class RecipeController {
                     newIngredientCard.setMeasurement(newMeasurement);
                 }
         );
+        newIngredientCard.setAmount(amount);
         newIngredientCard.setRecipeCard(newRecipe);
         ingredientCardRepository.save(newIngredientCard);
+        newInstructionCard.setRecipeCard(newRecipe);
         instructionCardRepository.save(newInstructionCard);
-        newRecipe.setStatCard(newStatCard);
-        recipeCardRepository.save(newRecipe);
         return "redirect:/Recipe/ExampleRecipe";
+    }
+    @GetMapping("view/{id}")
+    public String displayView(Model model, @PathVariable Integer id) {
+        model.addAttribute("recipeCard", recipeCardRepository.findRecipeCardById(id));
+        model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
+        model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
+        return "recipe/examplerecipe.html";
     }
 }
