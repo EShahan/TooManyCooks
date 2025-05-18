@@ -18,6 +18,10 @@ public class InstructionCard {
     public InstructionCard() {
     }
 
+    public InstructionCard(String instructionStep) {
+        this.instructionStep = instructionStep;
+    }
+
     public Integer getId() {
         return id;
     }

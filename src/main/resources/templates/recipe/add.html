@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Add Recipe</title>
     <link th:href="@{/styles.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/addInput.js}"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -31,9 +32,11 @@
             <label> Measurement : <input type="text" name="measurement"/></label>
             <!--            TODO: ADD JS TO DUPLICATE THIS FIELD-->
         </div>
-        <div>
-            <label> Instructions : <input type="text" name="instructionStep"/></label>
-            <!--            TODO: ADD JS TO DUPLICATE THIS FIELD-->
+        <div id="instructionInputs">
+            <a style='color:blue' onclick="addFn()">Add Instruction Step</a>
+            <div>
+                <label> Instruction Step : <input type="text" name="instructions"/></label>
+            </div>
         </div>
         <div>
             <input type="submit" value="Add"/>

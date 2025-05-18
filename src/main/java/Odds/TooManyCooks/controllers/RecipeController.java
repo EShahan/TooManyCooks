@@ -42,9 +42,8 @@ public class RecipeController {
         return "recipe/add";
     }
     @PostMapping("Add")
-    public String processAddRecipe(@RequestParam String ingredient, @RequestParam String measurement, @RequestParam Integer amount,
+    public String processAddRecipe(@RequestParam String ingredient, @RequestParam String measurement, @RequestParam Integer amount, @RequestParam String[] instructions,
                                    @ModelAttribute @Valid RecipeCard newRecipe, @ModelAttribute @Valid StatCard newStatCard,
-                                   @ModelAttribute InstructionCard newInstructionCard,
                                    Error errors, Model model) {
         newRecipe.setStatCard(newStatCard);
         recipeCardRepository.save(newRecipe);
@@ -72,9 +71,15 @@ public class RecipeController {
         newIngredientCard.setAmount(amount);
         newIngredientCard.setRecipeCard(newRecipe);
         ingredientCardRepository.save(newIngredientCard);
-        newInstructionCard.setRecipeCard(newRecipe);
-        instructionCardRepository.save(newInstructionCard);
-        return "redirect:/Recipe/ExampleRecipe";
+        // Iterate over list of all instructions to connect them to create instructionsteps and connect them to a card. Use iteration value to order them in MySQL server.
+        for (int i = 0; i < instructions.length; i++) {
+            InstructionCard newInstructionCard = new InstructionCard(instructions[i]);
+            newInstructionCard.setRecipeCard(newRecipe);
+            newInstructionCard.setInstructionOrder(i);
+            instructionCardRepository.save(newInstructionCard);
+        }
+
+        return "redirect:/Recipe/view/" + newRecipe.getId();
     }
     @GetMapping("view/{id}")
     public String displayView(Model model, @PathVariable Integer id) {
