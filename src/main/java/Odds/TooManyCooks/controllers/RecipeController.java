@@ -42,7 +42,7 @@ public class RecipeController {
         return "recipe/add";
     }
     @PostMapping("Add")
-    public String processAddRecipe(@RequestParam String ingredient, @RequestParam String measurement, @RequestParam Integer amount, @RequestParam String[] instructions,
+    public String processAddRecipe(@RequestParam String[] ingredient, @RequestParam String[] measurement, @RequestParam Integer[] amount, @RequestParam String[] instructions,
                                    @ModelAttribute @Valid RecipeCard newRecipe, @ModelAttribute @Valid StatCard newStatCard,
                                    Error errors, Model model) {
         newRecipe.setStatCard(newStatCard);
@@ -50,27 +50,52 @@ public class RecipeController {
         IngredientCard newIngredientCard = new IngredientCard();
         newStatCard.setAuthor("Me"); //PLACEHOLDER! TODO: Once UserDetails is implemented, this should retrieve the user's name
         statCardRepository.save(newStatCard);
+
         // Uses optional queries to check if the name of our ingredient or measurement already exists
         // If it exists, it sets the ingredientCard to that ingredient or measurement
         // If it does not, it creates a new object of it and sets that object to the ingredientCard
-        rawIngredientRepository.findRawIngredientByName(ingredient).ifPresentOrElse(
+
+        for (int i = 0; i < ingredient.length; i++) {
+            int finalI = i; // From lambda, can't reference anything that isn't final
+            rawIngredientRepository.findRawIngredientByName(ingredient[i]).ifPresentOrElse(
                 newIngredientCard::setRawIngredient,
                 () -> {
-                    RawIngredient newRawIngredient = new RawIngredient(ingredient);
+                    RawIngredient newRawIngredient = new RawIngredient(ingredient[finalI]);
                     rawIngredientRepository.save(newRawIngredient);
                     newIngredientCard.setRawIngredient(newRawIngredient);
                 });
-        measurementRepository.findMeasurementByName(measurement).ifPresentOrElse(
+                measurementRepository.findMeasurementByName(measurement[i]).ifPresentOrElse(
                 newIngredientCard::setMeasurement,
                 () -> {
-                    Measurement newMeasurement = new Measurement(measurement);
+                    Measurement newMeasurement = new Measurement(measurement[finalI]);
                     measurementRepository.save(newMeasurement);
                     newIngredientCard.setMeasurement(newMeasurement);
                 }
         );
-        newIngredientCard.setAmount(amount);
-        newIngredientCard.setRecipeCard(newRecipe);
-        ingredientCardRepository.save(newIngredientCard);
+            newIngredientCard.setAmount(amount[finalI]);
+            newIngredientCard.setRecipeCard(newRecipe);
+            ingredientCardRepository.save(newIngredientCard);
+        }
+
+//        rawIngredientRepository.findRawIngredientByName(ingredient).ifPresentOrElse(
+//                newIngredientCard::setRawIngredient,
+//                () -> {
+//                    RawIngredient newRawIngredient = new RawIngredient(ingredient);
+//                    rawIngredientRepository.save(newRawIngredient);
+//                    newIngredientCard.setRawIngredient(newRawIngredient);
+//                });
+//        measurementRepository.findMeasurementByName(measurement).ifPresentOrElse(
+//                newIngredientCard::setMeasurement,
+//                () -> {
+//                    Measurement newMeasurement = new Measurement(measurement);
+//                    measurementRepository.save(newMeasurement);
+//                    newIngredientCard.setMeasurement(newMeasurement);
+//                }
+//        );
+//        newIngredientCard.setAmount(amount);
+//        newIngredientCard.setRecipeCard(newRecipe);
+//        ingredientCardRepository.save(newIngredientCard);
+
         // Iterate over list of all instructions to connect them to create instructionsteps and connect them to a card. Use iteration value to order them in MySQL server.
         for (int i = 0; i < instructions.length; i++) {
             InstructionCard newInstructionCard = new InstructionCard(instructions[i]);

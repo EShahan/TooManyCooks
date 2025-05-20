@@ -26,14 +26,14 @@
             <label> Method : <input type="text" name="method"/></label>
             <label> Cuisine : <input type="text" name="cuisine"/></label>
         </div>
-        <div>
+        <div id="ingredientInputs">
+            <a style='color:blue' onclick="addIngredientInput()">Add Ingredient</a><br>
             <label> Ingredient : <input type="text" name="ingredient"/></label>
             <label> Amount : <input type="text" name="amount"/></label>
             <label> Measurement : <input type="text" name="measurement"/></label>
-            <!--            TODO: ADD JS TO DUPLICATE THIS FIELD-->
         </div>
         <div id="instructionInputs">
-            <a style='color:blue' onclick="addFn()">Add Instruction Step</a>
+            <a style='color:blue' onclick="addInstructionInput()">Add Instruction Step</a>
             <div>
                 <label> Instruction Step : <input type="text" name="instructions"/></label>
             </div>
