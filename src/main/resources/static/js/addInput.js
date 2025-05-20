@@ -1,21 +1,21 @@
 function addInstructionInput() {
             const divEle = document.getElementById("instructionInputs");
-            divEle.innerHTML += `
-            <div>
+            var instructionInput = document.createElement('div');
+            instructionInput.innerHTML += `
                 <label> Instruction Step : <input type="text" name="instructions"/></label><br>
                 <a style='color:blue' onclick='this.parentElement.remove()'>Remove This Instruction Step</a>
-            </div>
       `;
+      divEle.appendChild(instructionInput);
 }
 
 function addIngredientInput() {
             const divEle = document.getElementById("ingredientInputs");
-            divEle.innerHTML += `
-            <div>
+            var ingredientInput = document.createElement('div');
+            ingredientInput.innerHTML += `
                             <label> Ingredient : <input type="text" name="ingredient"/></label>
                             <label> Amount : <input type="text" name="amount"/></label>
                             <label> Measurement : <input type="text" name="measurement"/></label>
                 <a style='color:blue' onclick='this.parentElement.remove()'>Remove This Ingredient</a>
-            </div>
       `;
+      divEle.appendChild(ingredientInput);
 }
