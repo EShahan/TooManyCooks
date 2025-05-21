@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Recipe</title>
+    <link th:href="@{/styles.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/addInput.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="navbar">
+        Navbar
+    </div>
+    <div class="header">
+        <h1>Too Many Cooks</h1>
+    </div>
+    <form method="post">
+        <div>
+            <label> Recipe Name : <input type="text" name="recipeName"/></label>
+        </div>
+        <div>
+            <label> Cook Time : <input type="text" name="cookTime"/></label>
+            <label> Prep Time : <input type="text" name="prepTime"/></label>
+            <label> Total Time : <input type="text" name="totalTime"/></label>
+            <label> Yield : <input type="text" name="yield"/></label>
+            <label> Method : <input type="text" name="method"/></label>
+            <label> Cuisine : <input type="text" name="cuisine"/></label>
+        </div>
+        <div id="ingredientInputs">
+            <a style='color:blue' onclick="addIngredientInput()">Add Ingredient</a><br>
+            <label> Ingredient : <input type="text" name="ingredient"/></label>
+            <label> Amount : <input type="text" name="amount"/></label>
+            <label> Measurement : <input type="text" name="measurement"/></label>
+        </div>
+        <div id="instructionInputs">
+            <a style='color:blue' onclick="addInstructionInput()">Add Instruction Step</a>
+            <div>
+                <label> Instruction Step : <input type="text" name="instructions"/></label>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Add"/>
+        </div>
+    </form>
+    <div class="footer">
+        Footer
+    </div>
+</div>
+</body>
+</html>

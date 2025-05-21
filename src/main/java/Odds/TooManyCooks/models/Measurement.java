@@ -18,6 +18,10 @@ public class Measurement {
     public Measurement() {
     }
 
+    public Measurement(String name) {
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
