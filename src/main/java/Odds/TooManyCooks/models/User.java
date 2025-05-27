@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class User implements UserDetails {
@@ -32,6 +33,9 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> userRoles;
+
+    @OneToMany(mappedBy = "user")
+    private Set<RecipeCard> recipeCards;
 
     public User() {
     }
@@ -63,6 +67,14 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
+    }
+
+    public Set<RecipeCard> getRecipeCards() {
+        return recipeCards;
+    }
+
+    public void setRecipeCards(Set<RecipeCard> recipeCards) {
+        this.recipeCards = recipeCards;
     }
 
     @Override
