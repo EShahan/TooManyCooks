@@ -19,7 +19,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE)
+    @Order(Ordered.LOWEST_PRECEDENCE)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
@@ -31,6 +31,24 @@ public class WebSecurityConfig {
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
+        return http.build();
+    }
+
+    //SecurityChainFilter ensuring the add recipe page requires an authenticated user. Page currently requires UserDetails to work.
+    @Bean
+    @Order(1)
+    public SecurityFilterChain addRecipeChainFilter(HttpSecurity http) throws Exception {
+        http
+                .securityMatcher("/Recipe/Add")
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/**").authenticated()
+                )
+                .csrf(csrf -> csrf.disable())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll()
+                )
+                .logout((logout -> logout.permitAll()));
         return http.build();
     }
 }
