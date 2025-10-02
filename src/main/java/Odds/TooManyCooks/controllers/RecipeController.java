@@ -4,6 +4,8 @@ import Odds.TooManyCooks.models.*;
 import Odds.TooManyCooks.models.data.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("Recipe")
 public class RecipeController {
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private RecipeCardRepository recipeCardRepository;
     @Autowired
@@ -44,11 +48,12 @@ public class RecipeController {
     @PostMapping("Add")
     public String processAddRecipe(@RequestParam String[] ingredient, @RequestParam String[] measurement, @RequestParam Integer[] amount, @RequestParam String[] instructions,
                                    @ModelAttribute @Valid RecipeCard newRecipe, @ModelAttribute @Valid StatCard newStatCard,
-                                   Error errors, Model model) {
+                                   Error errors, Model model, @AuthenticationPrincipal UserDetails userDetails) {
         newRecipe.setStatCard(newStatCard);
+        newRecipe.setUser(userRepository.findUserByUsername(userDetails.getUsername()));
         recipeCardRepository.save(newRecipe);
         IngredientCard newIngredientCard = new IngredientCard();
-        newStatCard.setAuthor("Me"); //PLACEHOLDER! TODO: Once UserDetails is implemented, this should retrieve the user's name
+        newStatCard.setAuthor(userDetails.getUsername());
         statCardRepository.save(newStatCard);
 
         // Uses optional queries to check if the name of our ingredient or measurement already exists
