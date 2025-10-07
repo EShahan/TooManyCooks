@@ -3,9 +3,8 @@ function addInstructionInput() {
             var instructionInput = document.createElement('div');
             instructionInput.innerHTML += `
                 <ul>
-                    <li><label> Instruction Step : <input type="text" name="instructions"/></label></li>
-
-                <a style='color:blue' onclick='this.parentElement.parentElement.remove()'>Remove This Instruction Step</a>
+                    <li><label> Instruction Step : <br><textarea name="instructions" class="addInstructionsText"></textarea></label></li>
+                    <a style='color:blue' onclick='this.parentElement.parentElement.remove()'>Remove This Instruction Step</a>
                 </ul>
       `;
       divEle.appendChild(instructionInput);

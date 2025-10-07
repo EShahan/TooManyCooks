@@ -14,6 +14,10 @@ ul {
     margin-left: 0px;
 }
 
+li {
+    margin-top: 5px;
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -41,6 +45,11 @@ ul {
     font-size: 35px;
 }
 
+.addInstructionsText {
+    width: 100%;
+    resize: none;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -61,6 +70,7 @@ ul {
 #recipeCard {
     display: flex;
     flex-direction: column;
+    width: 75%;
     margin: 20px auto;
     border: 1px solid #185c35;
     outline: .5em solid #f9f9f9;
