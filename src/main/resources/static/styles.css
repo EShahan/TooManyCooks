@@ -8,6 +8,12 @@ h1, h2, h3 {
     font-family: Domaine Display,Georgia,Cambria,Times New Roman,Times,serif;
 }
 
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
 .row {
     display: flex;
     flex-direction: row;
