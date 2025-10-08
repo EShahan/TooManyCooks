@@ -16,14 +16,18 @@
     </div>
     <div class="content">
         <form method="post">
-            <div>
-                <h2Recipe Details:></h2Recipe>
-                <ul>
-                    <li><label> Detail : <br><textarea name="recipeDetails" class="detailedInstructionsText"></textarea></label></li>
-                </ul>
+            <div id="recipeDetailInputs">
+                <h2>Recipe Details:</h2>
+                <a style='color:blue' onclick="addRecipeDetailInput()">Add Detail</a>
+                <div>
+                    <ul>
+                        <li><label> Detail : <br><textarea name="recipeDetails" class="detailedInstructionsText"></textarea></label></li>
+                    </ul>
+                </div>
             </div>
-            <div>
+            <div id="recipeInstructionInputs">
                 <h2>Recipe Instructions:</h2>
+                <a style='color:blue' onclick="addRecipeInstructionInput()">Add Instruction Step</a>
                 <ul>
                     <li><label> Detailed Instruction : <br><textarea name="recipeInstructions" class="detailedInstructionsText"></textarea></label></li>
                 </ul>
@@ -50,8 +54,8 @@
                         Image?
                     </div>
                 </div>
-                <div id="ingredientInputs">
-                    <a style='color:blue' onclick="addIngredientInput()">Add Ingredient</a><br>
+                <div id="ingredientCardInputs">
+                    <a style='color:blue' onclick="addIngredientCardInput()">Add Ingredient</a><br>
                     <div>
                         <ul>
                             <li><label> Ingredient : <input type="text" name="ingredient"/></label></li>
@@ -60,8 +64,8 @@
                         </ul>
                     </div>
                 </div>
-                <div id="instructionInputs">
-                    <a style='color:blue' onclick="addInstructionInput()">Add Instruction Step</a>
+                <div id="instructionCardInputs">
+                    <a style='color:blue' onclick="addInstructionCardInput()">Add Instruction Step</a>
                     <div>
                         <ul>
                             <li><label> Instruction Step : <br><textarea name="instructionCard" class="addInstructionsText"></textarea></label></li>
