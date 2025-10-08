@@ -8,6 +8,24 @@ h1, h2, h3 {
     font-family: Domaine Display,Georgia,Cambria,Times New Roman,Times,serif;
 }
 
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+ol {
+    padding-left: 1.5em;
+}
+
+ol > li::marker {
+    font-weight: bold;
+}
+
+li {
+    margin-top: 5px;
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -35,6 +53,16 @@ h1, h2, h3 {
     font-size: 35px;
 }
 
+.addInstructionsText {
+    width: 100%;
+    resize: none;
+    height: 3em;
+}
+
+.strikethroughCheckbox:checked + span{
+    text-decoration: line-through;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -55,6 +83,7 @@ h1, h2, h3 {
 #recipeCard {
     display: flex;
     flex-direction: column;
+    width: 75%;
     margin: 20px auto;
     border: 1px solid #185c35;
     outline: .5em solid #f9f9f9;

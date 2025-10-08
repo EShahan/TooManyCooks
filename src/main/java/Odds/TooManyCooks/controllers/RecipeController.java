@@ -59,6 +59,8 @@ public class RecipeController {
         // Uses optional queries to check if the name of our ingredient or measurement already exists
         // If it exists, it sets the ingredientCard to that ingredient or measurement
         // If it does not, it creates a new object of it and sets that object to the ingredientCard
+        // TODO: This code causes an error if the user creates a duplicate ingredient or instruction.
+        // For now handling can prevent a repeat input. But, depending on the features the site adds a more permanent solution may be needed.
 
         for (int i = 0; i < ingredient.length; i++) {
             int finalI = i; // From lambda, can't reference anything that isn't final

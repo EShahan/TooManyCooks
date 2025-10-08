@@ -2,8 +2,10 @@ function addInstructionInput() {
             const divEle = document.getElementById("instructionInputs");
             var instructionInput = document.createElement('div');
             instructionInput.innerHTML += `
-                <label> Instruction Step : <input type="text" name="instructions"/></label><br>
-                <a style='color:blue' onclick='this.parentElement.remove()'>Remove This Instruction Step</a>
+                <ul>
+                    <li><label> Instruction Step : <br><textarea name="instructions" class="addInstructionsText"></textarea></label></li>
+                    <a style='color:blue' onclick='this.parentElement.parentElement.remove()'>Remove This Instruction Step</a>
+                </ul>
       `;
       divEle.appendChild(instructionInput);
 }
@@ -12,10 +14,12 @@ function addIngredientInput() {
             const divEle = document.getElementById("ingredientInputs");
             var ingredientInput = document.createElement('div');
             ingredientInput.innerHTML += `
-                            <label> Ingredient : <input type="text" name="ingredient"/></label>
-                            <label> Amount : <input type="text" name="amount"/></label>
-                            <label> Measurement : <input type="text" name="measurement"/></label>
-                <a style='color:blue' onclick='this.parentElement.remove()'>Remove This Ingredient</a>
+                    <ul>
+                        <li><label> Ingredient : <input type="text" name="ingredient"/></label></li>
+                        <li><label> Amount : <input type="text" name="amount"/></label></li>
+                        <li><label> Measurement : <input type="text" name="measurement"/></label></li>
+                        <a style='color:blue' onclick='this.parentElement.parentElement.remove()'>Remove This Ingredient</a>
+                    </ul>
       `;
       divEle.appendChild(ingredientInput);
 }
