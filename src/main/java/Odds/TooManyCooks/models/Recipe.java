@@ -14,7 +14,7 @@ public class Recipe {
     @JoinColumn
     private User user;
 
-    @OneToOne
+    @OneToOne(mappedBy = "recipe")
     private RecipeCard recipeCard;
 
     @OneToMany(mappedBy = "recipe")
@@ -24,6 +24,22 @@ public class Recipe {
     private Set<RecipeInstruction> recipeInstructions;
 
     private String recipeName;
+
+    public Set<RecipeDetail> getRecipeDetails() {
+        return recipeDetails;
+    }
+
+    public void setRecipeDetails(Set<RecipeDetail> recipeDetails) {
+        this.recipeDetails = recipeDetails;
+    }
+
+    public Set<RecipeInstruction> getRecipeInstructions() {
+        return recipeInstructions;
+    }
+
+    public void setRecipeInstructions(Set<RecipeInstruction> recipeInstructions) {
+        this.recipeInstructions = recipeInstructions;
+    }
 
     public Integer getId() {
         return id;

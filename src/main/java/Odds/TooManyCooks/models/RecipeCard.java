@@ -8,11 +8,15 @@ import java.util.Set;
 public class RecipeCard {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @ManyToOne
     @JoinColumn
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    @MapsId
+    private Recipe recipe;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stat_card_id", referencedColumnName = "id")
@@ -25,6 +29,14 @@ public class RecipeCard {
     private Set<InstructionCard> instructionCards;
 
     private String recipeName;
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
 
     public RecipeCard() {
     }

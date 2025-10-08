@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
-    boolean alreadySetup = true;
+    boolean alreadySetup = false;
 
     @Autowired
     private RawIngredientRepository rawIngredientRepository;
@@ -44,6 +44,10 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup)
             return;
+
+        Recipe pickledPeppers = new Recipe();
+        pickledPeppers.setRecipeName("Pickled Peppers");
+        recipeRepository.save(pickledPeppers);
 
         RawIngredient pepper = new RawIngredient();
         pepper.setName("Pepper");
@@ -85,6 +89,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
         RecipeCard pepperList = new RecipeCard();
         pepperList.setStatCard(statCard);
+        pepperList.setRecipe(pickledPeppers);
         pepperList.setRecipeName("Pickled Peppers");
         recipeCardRepository.save(pepperList);
 
@@ -125,11 +130,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         pepperCard2.setAmount(1);
         pepperCard2.setRecipeCard(pepperList);
         ingredientCardRepository.save(pepperCard2);
-
-        Recipe pickledPeppers = new Recipe();
-        pickledPeppers.setRecipeCard(pepperList);
-        pickledPeppers.setRecipeName("Pickled Peppers");
-        recipeRepository.save(pickledPeppers);
 
         RecipeDetail recipeDetail = new RecipeDetail();
         recipeDetail.setDetail("Once upon a time, Peter Piper Prepared a Peck of Pickled Peppers that were so tantilizingly delicious that he hid them from the world. Henceforth, everyone demanded to know \"Where's The Peck of Pickled Peppers Peter Piper Picked!?\"");
