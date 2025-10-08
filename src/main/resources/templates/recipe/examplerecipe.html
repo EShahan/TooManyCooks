@@ -14,11 +14,11 @@
     Header
   </div>
   <div class="content">
-    <div>History 1</div>
-    <div>History 2</div>
-    <div>History 3</div>
-    <div>Saucy Instructions 1</div>
-    <div>Saucy Instructions 2</div>
+    <h1 th:text="${recipe.recipeName}"></h1>
+    <h2>Recipe Details:</h2>
+    <div th:each="recipeDetail : ${recipeDetails}" th:text="${recipeDetail.detail}"></div>
+    <h2>Recipe Instructions:</h2>
+    <div th:each="recipeInstruction : ${recipeInstructions}" th:text="${recipeInstruction.instruction}"></div>
     <div id="recipeCard">
       <h2 id="recipeHeader" th:text="${recipeCard.recipeName}"></h2>
       <div class="row" id="statPhotoCard">
@@ -45,7 +45,6 @@
               <span th:text="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></span>
             </label>
           </li>
-<!--          <li th:each="ingredient : ${ingredients}" th:utext="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></li>-->
         </ul>
       </div>
       <div id="instructionCard">

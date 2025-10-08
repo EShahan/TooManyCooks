@@ -10,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Controller
 @RequestMapping("Recipe")
 public class RecipeController {
@@ -29,6 +27,12 @@ public class RecipeController {
     private RawIngredientRepository rawIngredientRepository;
     @Autowired
     private InstructionCardRepository instructionCardRepository;
+    @Autowired
+    private RecipeRepository recipeRepository;
+    @Autowired
+    private RecipeDetailRepository recipeDetailRepository;
+    @Autowired
+    private RecipeInstructionRepository recipeInstructionRepository;
 
     @GetMapping("ExampleRecipe")
     public String ExampleRecipe(Model model) {
@@ -115,6 +119,9 @@ public class RecipeController {
     }
     @GetMapping("view/{id}")
     public String displayView(Model model, @PathVariable Integer id) {
+        model.addAttribute("recipe", recipeRepository.findRecipeById(id));
+        model.addAttribute("recipeInstructions", recipeInstructionRepository.findRecipeInstructionSetByRecipeIdOrderAsc(id));
+        model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
         model.addAttribute("recipeCard", recipeCardRepository.findRecipeCardById(id));
         model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
