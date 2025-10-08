@@ -44,6 +44,7 @@ public class RecipeController {
 
     @GetMapping("Add")
     public String displayAddRecipe(Model model) {
+        model.addAttribute(new Recipe());
         model.addAttribute(new RecipeCard());
         model.addAttribute(new StatCard());
         model.addAttribute(new InstructionCard());
@@ -51,11 +52,14 @@ public class RecipeController {
     }
     @PostMapping("Add")
     public String processAddRecipe(@RequestParam String[] ingredient, @RequestParam String[] measurement, @RequestParam Integer[] amount, @RequestParam String[] instructions,
-                                   @ModelAttribute @Valid RecipeCard newRecipe, @ModelAttribute @Valid StatCard newStatCard,
+                                   @ModelAttribute @Valid Recipe newRecipe, @ModelAttribute @Valid RecipeCard newRecipeCard, @ModelAttribute @Valid StatCard newStatCard,
                                    Error errors, Model model, @AuthenticationPrincipal UserDetails userDetails) {
-        newRecipe.setStatCard(newStatCard);
         newRecipe.setUser(userRepository.findUserByUsername(userDetails.getUsername()));
-        recipeCardRepository.save(newRecipe);
+        recipeRepository.save(newRecipe);
+        newRecipeCard.setStatCard(newStatCard);
+        newRecipeCard.setRecipe(newRecipe);
+//        newRecipeCard.setUser(userRepository.findUserByUsername(userDetails.getUsername()));
+        recipeCardRepository.save(newRecipeCard);
         IngredientCard newIngredientCard = new IngredientCard();
         newStatCard.setAuthor(userDetails.getUsername());
         statCardRepository.save(newStatCard);
@@ -84,7 +88,7 @@ public class RecipeController {
                 }
         );
             newIngredientCard.setAmount(amount[finalI]);
-            newIngredientCard.setRecipeCard(newRecipe);
+            newIngredientCard.setRecipeCard(newRecipeCard);
             ingredientCardRepository.save(newIngredientCard);
         }
 
@@ -104,25 +108,25 @@ public class RecipeController {
 //                }
 //        );
 //        newIngredientCard.setAmount(amount);
-//        newIngredientCard.setRecipeCard(newRecipe);
+//        newIngredientCard.setRecipeCard(newRecipeCard);
 //        ingredientCardRepository.save(newIngredientCard);
 
         // Iterate over list of all instructions to connect them to create instructionsteps and connect them to a card. Use iteration value to order them in MySQL server.
         for (int i = 0; i < instructions.length; i++) {
             InstructionCard newInstructionCard = new InstructionCard(instructions[i]);
-            newInstructionCard.setRecipeCard(newRecipe);
+            newInstructionCard.setRecipeCard(newRecipeCard);
             newInstructionCard.setInstructionOrder(i);
             instructionCardRepository.save(newInstructionCard);
         }
 
-        return "redirect:/Recipe/view/" + newRecipe.getId();
+        return "redirect:/Recipe/view/" + newRecipeCard.getId();
     }
     @GetMapping("view/{id}")
     public String displayView(Model model, @PathVariable Integer id) {
         model.addAttribute("recipe", recipeRepository.findRecipeById(id));
         model.addAttribute("recipeInstructions", recipeInstructionRepository.findRecipeInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
-        model.addAttribute("recipeCard", recipeCardRepository.findRecipeCardById(id));
+//        model.addAttribute("recipeCard", recipeCardRepository.findRecipeCardById(id));
         model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
         return "recipe/examplerecipe.html";

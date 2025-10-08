@@ -9,9 +9,6 @@ public class RecipeCard {
 
     @Id
     private Integer id;
-    @ManyToOne
-    @JoinColumn
-    private User user;
 
     @OneToOne
     @JoinColumn(name = "id")
@@ -27,8 +24,6 @@ public class RecipeCard {
 
     @OneToMany(mappedBy = "recipeCard")
     private Set<InstructionCard> instructionCards;
-
-    private String recipeName;
 
     public Recipe getRecipe() {
         return recipe;
@@ -47,14 +42,6 @@ public class RecipeCard {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public StatCard getStatCard() {
@@ -79,13 +66,5 @@ public class RecipeCard {
 
     public void setInstructionCards(Set<InstructionCard> instructionCards) {
         this.instructionCards = instructionCards;
-    }
-
-    public String getRecipeName() {
-        return recipeName;
-    }
-
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
-    boolean alreadySetup = false;
+    boolean alreadySetup = true;
 
     @Autowired
     private RawIngredientRepository rawIngredientRepository;
@@ -90,7 +90,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         RecipeCard pepperList = new RecipeCard();
         pepperList.setStatCard(statCard);
         pepperList.setRecipe(pickledPeppers);
-        pepperList.setRecipeName("Pickled Peppers");
         recipeCardRepository.save(pepperList);
 
         InstructionCard instructionCard1 = new InstructionCard();
