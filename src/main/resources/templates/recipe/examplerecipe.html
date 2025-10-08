@@ -7,11 +7,11 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="navbar">
+  <div th:replace="~{fragments :: navbar}">
     Navbar
   </div>
-  <div class="header">
-    <h1>Too Many Cooks</h1>
+  <div th:replace="~{fragments :: header}">
+    Header
   </div>
   <div class="content">
     <div>History 1</div>
@@ -39,7 +39,13 @@
       <div id="ingredientCard">
         <h3>Ingredients</h3>
         <ul>
-          <li th:each="ingredient : ${ingredients}" th:text="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></li>
+          <li th:each="ingredient : ${ingredients}">
+            <label>
+              <input type="checkbox" class="strikethroughCheckbox"/>
+              <span th:text="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></span>
+            </label>
+          </li>
+<!--          <li th:each="ingredient : ${ingredients}" th:utext="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></li>-->
         </ul>
       </div>
       <div id="instructionCard">
@@ -50,7 +56,7 @@
       </div>
     </div>
   </div>
-  <div class="footer">
+  <div th:replace="~{fragments :: footer}">
     Footer
   </div>
 
