@@ -16,6 +16,14 @@ public class RecipeInstruction {
 
     private Integer instructionOrder;
 
+    public RecipeInstruction() {
+
+    }
+
+    public RecipeInstruction(String instruction) {
+        this.instruction = instruction;
+    }
+
     public Integer getId() {
         return id;
     }

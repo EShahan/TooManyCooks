@@ -15,6 +15,14 @@ public class RecipeDetail {
 
     private Integer detailOrder;
 
+    public RecipeDetail() {
+
+    }
+
+    public RecipeDetail(String detail) {
+        this.detail = detail;
+    }
+
     public Integer getId() {
         return id;
     }

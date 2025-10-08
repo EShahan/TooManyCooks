@@ -51,7 +51,8 @@ public class RecipeController {
         return "recipe/add";
     }
     @PostMapping("Add")
-    public String processAddRecipe(@RequestParam String[] ingredient, @RequestParam String[] measurement, @RequestParam Integer[] amount, @RequestParam String[] instructions,
+    public String processAddRecipe(@RequestParam String[] recipeDetails, @RequestParam String[] recipeInstructions,
+                                   @RequestParam String[] ingredient, @RequestParam String[] measurement, @RequestParam Integer[] amount, @RequestParam String[] instructionCard,
                                    @ModelAttribute @Valid Recipe newRecipe, @ModelAttribute @Valid RecipeCard newRecipeCard, @ModelAttribute @Valid StatCard newStatCard,
                                    Error errors, Model model, @AuthenticationPrincipal UserDetails userDetails) {
         newRecipe.setUser(userRepository.findUserByUsername(userDetails.getUsername()));
@@ -69,6 +70,19 @@ public class RecipeController {
         // If it does not, it creates a new object of it and sets that object to the ingredientCard
         // TODO: This code causes an error if the user creates a duplicate ingredient or instruction.
         // For now handling can prevent a repeat input. But, depending on the features the site adds a more permanent solution may be needed.
+
+        for (int i = 0; i < recipeDetails.length; i++) {
+            RecipeDetail newRecipeDetail = new RecipeDetail(recipeDetails[i]);
+            newRecipeDetail.setDetailOrder(i);
+            newRecipeDetail.setRecipe(newRecipe);
+            recipeDetailRepository.save(newRecipeDetail);
+        }
+        for (int i = 0; i < recipeInstructions.length; i++) {
+            RecipeInstruction newRecipeInstructions = new RecipeInstruction(recipeInstructions[i]);
+            newRecipeInstructions.setInstructionOrder(i);
+            newRecipeInstructions.setRecipe(newRecipe);
+            recipeInstructionRepository.save(newRecipeInstructions);
+        }
 
         for (int i = 0; i < ingredient.length; i++) {
             int finalI = i; // From lambda, can't reference anything that isn't final
@@ -111,9 +125,9 @@ public class RecipeController {
 //        newIngredientCard.setRecipeCard(newRecipeCard);
 //        ingredientCardRepository.save(newIngredientCard);
 
-        // Iterate over list of all instructions to connect them to create instructionsteps and connect them to a card. Use iteration value to order them in MySQL server.
-        for (int i = 0; i < instructions.length; i++) {
-            InstructionCard newInstructionCard = new InstructionCard(instructions[i]);
+        // Iterate over list of all instructionCard to connect them to create instructionsteps and connect them to a card. Use iteration value to order them in MySQL server.
+        for (int i = 0; i < instructionCard.length; i++) {
+            InstructionCard newInstructionCard = new InstructionCard(instructionCard[i]);
             newInstructionCard.setRecipeCard(newRecipeCard);
             newInstructionCard.setInstructionOrder(i);
             instructionCardRepository.save(newInstructionCard);
@@ -126,7 +140,6 @@ public class RecipeController {
         model.addAttribute("recipe", recipeRepository.findRecipeById(id));
         model.addAttribute("recipeInstructions", recipeInstructionRepository.findRecipeInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
-//        model.addAttribute("recipeCard", recipeCardRepository.findRecipeCardById(id));
         model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
         return "recipe/examplerecipe.html";
