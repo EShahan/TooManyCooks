@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link th:href="@{/styles.css}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <div th:replace="~{fragments :: navbar}">
+      Navbar
+    </div>
+    <div th:replace="~{fragments :: header}">
+      Header
+    </div>
+    <div class="content">
+
+    </div>
+    <div th:replace="~{fragments :: footer}">
+      Footer
+    </div>
+  </div>
+</body>
+</html>

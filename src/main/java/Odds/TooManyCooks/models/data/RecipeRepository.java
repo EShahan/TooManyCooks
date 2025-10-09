@@ -13,4 +13,10 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
             "WHERE recipe.id = :id",
             nativeQuery = true)
     Recipe findRecipeById(@Param("id") Integer id);
+
+    @Query(value = "SELECT *\n" +
+            "FROM recipe\n" +
+            "WHERE recipe.user_id = :userId",
+            nativeQuery = true)
+    Iterable<Recipe> findRecipesByUserId(@Param("userId") Integer userId);
 }

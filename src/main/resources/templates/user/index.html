@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Recipes</title>
+  <link th:href="@{/styles.css}" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+  <div th:replace="~{fragments :: navbar}">
+    Navbar
+  </div>
+  <div th:replace="~{fragments :: header}">
+    Header
+  </div>
+  <div class="content">
+    <h2 th:text="${user.firstName} + ' ' + ${user.lastName}"></h2>
+    <div>
+      <h2>About This User</h2>
+      User Bio?
+    </div>
+    <div>
+      <h2>Recipes By This User</h2>
+      <ul>
+        <span>Do we want photos of recipe? Could get lengthy. Maybe table with (some) recipe details?</span>
+        <li th:each="recipe : ${recipes}">
+          <a th:href="@{'/Recipe/view/' + ${recipe.id}}" th:text="${recipe.recipeName}"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div th:replace="~{fragments :: footer}">
+    Footer
+  </div>
+</div>
+</body>
+</html>
