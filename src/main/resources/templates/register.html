@@ -7,23 +7,34 @@
 </head>
 <body>
     <div class="wrapper">
-        <form method="post">
-            <div>
-                <label> Email : <input type="text" name="username"/></label>
-            </div>
-            <div>
-                <label> Password : <input type="password" name="password"/></label>
-            </div>
-            <div>
-                <label> First Name : <input type="text" name="firstName"/></label>
-            </div>
-            <div>
-                <label> Last Name : <input type="text" name="lastName"/></label>
-            </div>
-            <div>
-                <input type="submit" value="Register">
-            </div>
-        </form>
+        <div th:replace="~{fragments :: authenticating-navbar}">
+            Navbar
+        </div>
+        <div th:replace="~{fragments :: header}">
+            Header
+        </div>
+        <div class="content">
+            <form method="post">
+                <div>
+                    <label> Email : <input type="text" name="username"/></label>
+                </div>
+                <div>
+                    <label> Password : <input type="password" name="password"/></label>
+                </div>
+                <div>
+                    <label> First Name : <input type="text" name="firstName"/></label>
+                </div>
+                <div>
+                    <label> Last Name : <input type="text" name="lastName"/></label>
+                </div>
+                <div>
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+        <div th:replace="~{fragments :: footer}">
+            Footer
+        </div>
     </div>
 </body>
 </html>
