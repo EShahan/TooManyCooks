@@ -7,14 +7,25 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="navbar">
+        <div th:replace="~{fragments :: navbar}">
             Navbar
         </div>
-        <div class="header">
+        <div th:replace="~{fragments :: header}">
             Header
         </div>
         <div class="content">
-            Content
+            <div>
+                User Favorites (Small form photos, perhaps sorted by recency)
+            </div>
+            <div>
+                Upcoming Recipes? (Recipes above x score made within y time period)
+            </div>
+            <div>
+                Broad Recipe Categories
+            </div>
+            <div>
+                Cycle between Misc. Categories. My favorites/seasonal/certain recipe category, etc.
+            </div>
         </div>
         <div class="footer">
             Footer
