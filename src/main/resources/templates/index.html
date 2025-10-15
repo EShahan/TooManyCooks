@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,7 +7,10 @@
 </head>
 <body>
     <div class="wrapper">
-        <div th:replace="~{fragments :: navbar}">
+        <div sec:authorize="isAnonymous()" th:replace="~{fragments :: anonymous-navbar}">
+            Navbar
+        </div>
+        <div sec:authorize="isAuthenticated()" th:replace="~{fragments :: authenticated-navbar}">
             Navbar
         </div>
         <div th:replace="~{fragments :: header}">

@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Fragments</title>
 </head>
-<div th:fragment="navbar" class="navbar">
-    Navbar
+<div th:fragment="anonymous-navbar" class="navbar">
+    <div class="left-navbar">
+        <b class="navbar-content">Home Photo!</b>
+    </div>
+    <div class="right-navbar">
+        <a th:href="@{/login}" id="sign-in" class="navbar-content">Login</a>
+        <a th:href="@{/register}" id="register" class="navbar-content">Register</a>
+    </div>
+</div>
+<div th:fragment="authenticated-navbar" class="navbar">
+    <div class="left-navbar">
+        <b class="navbar-content">Home Photo!</b>
+    </div>
+    <div class="right-navbar">
+        <form action="/logout" method="post" id="logout-form">
+            <input type="submit" value="Sign Out" id="sign-out" class="navbar-content">
+        </form>
+        <b sec:authentication="name" id="user-credential-text" class="navbar-content"></b>
+    </div>
 </div>
 <div th:fragment="header" class="header">
     <h1>Too Many Cooks</h1>

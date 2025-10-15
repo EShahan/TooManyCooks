@@ -50,8 +50,28 @@ li {
 }
 
 .navbar {
+    width: 100%;
     display: flex;
     background-color: #ccc;
+}
+
+.left-navbar {
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    background-color: #ccc;
+}
+
+.right-navbar {
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #ccc;
+}
+
+.navbar-content {
+    margin: 8px;
 }
 
 .header {
@@ -97,6 +117,14 @@ li {
     background-color: #f9f9f9;
     padding: 1.5em;
     text-wrap: wrap;
+}
+
+#sign-in {
+    padding: 8px;
+}
+
+#register {
+    padding: 8px;
 }
 
 #recipeHeader {
