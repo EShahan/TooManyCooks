@@ -7,10 +7,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <div sec:authorize="isAnonymous()" th:replace="~{fragments :: anonymous-navbar}">
-            Navbar
-        </div>
-        <div sec:authorize="isAuthenticated()" th:replace="~{fragments :: authenticated-navbar}">
+        <div th:replace="~{fragments :: navbar}">
             Navbar
         </div>
         <div th:replace="~{fragments :: header}">
