@@ -50,7 +50,11 @@ li {
 }
 
 .navbar {
+    position: sticky;
+    top: 0px;
+    right: 0px;
     width: 100%;
+    height: 70px;
     display: flex;
     background-color: #ccc;
 }
@@ -121,6 +125,18 @@ li {
 
 #sign-in {
     padding: 8px;
+}
+
+#loginBlock {
+    position: fixed;
+    top: 58px;
+    right: 0px;
+    display: none;
+    padding: 8px;
+    margin: 20px auto;
+    border: 1px solid #185c35;
+    outline: 8px solid #f9f9f9;
+    background-color: #f9f9f9;
 }
 
 #register {

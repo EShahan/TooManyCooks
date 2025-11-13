@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <title>Fragments</title>
 </head>
-<!--Displays different navbars depending on user authentication-->
-<div th:fragment="navbar">
+<div th:fragment="loginBlock" id="loginBlock">
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label> Email : <input type="text" name="username"/></label>
+        </div>
+        <div>
+            <label> Password : <input type="password" name="password"/></label>
+        </div>
+        <div>
+            <input type="submit" value="Sign In"/>
+        </div>
+    </form>
+</div>
+<!--Displays different navbars depending on user authentication... but has a leftover Div. Not using.-->
+<div th:fragment="navbar" style="position: sticky;">
     <div sec:authorize="isAnonymous()" th:replace="~{fragments :: anonymous-navbar}">
         Navbar
     </div>
@@ -33,6 +46,7 @@
         <b sec:authentication="name" id="user-credential-text" class="navbar-content"></b>
     </div>
 </div>
+<!--For login / registration page-->
 <div th:fragment="authenticating-navbar" class="navbar">
     <div class="left-navbar">
         <b class="navbar-content">Home Photo!</b>
