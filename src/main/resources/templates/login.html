@@ -6,16 +6,29 @@
     <link th:href="@{/styles.css}" rel="stylesheet">
 </head>
 <body>
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label> Email : <input type="text" name="username"/></label>
+    <div class="wrapper">
+        <div th:replace="~{fragments :: authenticating-navbar}">
+            Navbar
         </div>
-        <div>
-            <label> Password : <input type="password" name="password"/></label>
+        <div th:replace="~{fragments :: header}">
+            Header
         </div>
-        <div>
-            <input type="submit" value="Sign In"/>
+        <div class="content">
+            <form th:action="@{/login}" method="post">
+                <div>
+                    <label> Email : <input type="text" name="username"/></label>
+                </div>
+                <div>
+                    <label> Password : <input type="password" name="password"/></label>
+                </div>
+                <div>
+                    <input type="submit" value="Sign In"/>
+                </div>
+            </form>
         </div>
-    </form>
+        <div th:replace="~{fragments :: footer}">
+            Footer
+        </div>
+    </div>
 </body>
 </html>

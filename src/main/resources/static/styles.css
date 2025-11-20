@@ -50,8 +50,32 @@ li {
 }
 
 .navbar {
+    position: sticky;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 70px;
     display: flex;
     background-color: #ccc;
+}
+
+.left-navbar {
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    background-color: #ccc;
+}
+
+.right-navbar {
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #ccc;
+}
+
+.navbar-content {
+    margin: 8px;
 }
 
 .header {
@@ -87,6 +111,55 @@ li {
     background-color: #ccc;
 }
 
+.userFavoriteBar {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    text-align: center;
+}
+
+.userFavoritePhotoContainer {
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.userFavoritePhotoContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.upcomingRecipesBar {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    text-align: center;
+}
+
+.upcomingRecipe {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.upcomingRecipe a {
+    writing-mode: vertical-rl;
+}
+
+.upcomingRecipePhotoContainer {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.upcomingRecipePhotoContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 #recipeCard {
     display: flex;
     flex-direction: column;
@@ -97,6 +170,26 @@ li {
     background-color: #f9f9f9;
     padding: 1.5em;
     text-wrap: wrap;
+}
+
+#sign-in {
+    padding: 8px;
+}
+
+#loginBlock {
+    position: fixed;
+    top: 58px;
+    right: 0px;
+    display: none;
+    padding: 8px;
+    margin: 20px auto;
+    border: 1px solid #185c35;
+    outline: 8px solid #f9f9f9;
+    background-color: #f9f9f9;
+}
+
+#register {
+    padding: 8px;
 }
 
 #recipeHeader {

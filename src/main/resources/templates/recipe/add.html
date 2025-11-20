@@ -8,11 +8,11 @@
 </head>
 <body>
 <div class="wrapper">
-    <div class="navbar">
+    <div th:replace="~{fragments :: navbar}">
         Navbar
     </div>
-    <div class="header">
-        <h1>Too Many Cooks</h1>
+    <div th:replace="~{fragments :: header}">
+        Header
     </div>
     <div class="content">
         <form method="post">
