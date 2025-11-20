@@ -26,6 +26,13 @@ li {
     margin-top: 5px;
 }
 
+.detailedInstructionsText {
+    width: 95%;
+    margin: 10px;
+    resize: none;
+    height: 3em;
+}
+
 .row {
     display: flex;
     flex-direction: row;

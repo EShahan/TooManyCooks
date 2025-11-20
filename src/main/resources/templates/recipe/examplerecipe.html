@@ -14,23 +14,23 @@
     Header
   </div>
   <div class="content">
-    <div>History 1</div>
-    <div>History 2</div>
-    <div>History 3</div>
-    <div>Saucy Instructions 1</div>
-    <div>Saucy Instructions 2</div>
+    <h1 th:text="${recipe.recipeName}"></h1>
+    <h2>Recipe Details:</h2>
+    <div th:each="recipeDetail : ${recipeDetails}" th:text="${recipeDetail.detail}"></div>
+    <h2>Recipe Instructions:</h2>
+    <div th:each="recipeInstruction : ${recipeInstructions}" th:text="${recipeInstruction.instruction}"></div>
     <div id="recipeCard">
-      <h2 id="recipeHeader" th:text="${recipeCard.recipeName}"></h2>
+      <h2 id="recipeHeader" th:text="${recipe.recipeName}"></h2>
       <div class="row" id="statPhotoCard">
         <div id="statCard">
           <div id="ratingCard">Rating Img Here?</div>
-          <p th:utext="'&lt;strong&gt;Author: &lt;/strong&gt;' + ${recipeCard.statCard.author}"></p>
-          <p th:utext="'&lt;strong&gt;Prep Time: &lt;/strong&gt;' + ${recipeCard.statCard.prepTime}"></p>
-          <p th:utext="'&lt;strong&gt;Cook Time: &lt;/strong&gt;' + ${recipeCard.statCard.cookTime}"></p>
-          <p th:utext="'&lt;strong&gt;Total Time: &lt;/strong&gt;' + ${recipeCard.statCard.totalTime}"></p>
-          <p th:utext="'&lt;strong&gt;Yield: &lt;/strong&gt;' + ${recipeCard.statCard.yield}"></p>
-          <p th:utext="'&lt;strong&gt;Method: &lt;/strong&gt;' + ${recipeCard.statCard.method}"></p>
-          <p th:utext="'&lt;strong&gt;Cuisine: &lt;/strong&gt;' + ${recipeCard.statCard.cuisine}"></p>
+          <p th:utext="'&lt;strong&gt;Author: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.author}"></p>
+          <p th:utext="'&lt;strong&gt;Prep Time: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.prepTime}"></p>
+          <p th:utext="'&lt;strong&gt;Cook Time: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.cookTime}"></p>
+          <p th:utext="'&lt;strong&gt;Total Time: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.totalTime}"></p>
+          <p th:utext="'&lt;strong&gt;Yield: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.yield}"></p>
+          <p th:utext="'&lt;strong&gt;Method: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.method}"></p>
+          <p th:utext="'&lt;strong&gt;Cuisine: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.cuisine}"></p>
         </div>
         <div>
           <img th:src="@{/Images/PaintBrush-Logo.png}" id="cardPhoto"/>
@@ -45,7 +45,6 @@
               <span th:text="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></span>
             </label>
           </li>
-<!--          <li th:each="ingredient : ${ingredients}" th:utext="${ingredient.amount} + ' ' + ${ingredient.measurement.name} + ' ' + ${ingredient.rawIngredient.name}"></li>-->
         </ul>
       </div>
       <div id="instructionCard">

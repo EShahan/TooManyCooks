@@ -30,15 +30,32 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Autowired
     private InstructionCardRepository instructionCardRepository;
 
+    @Autowired
+    private RecipeRepository recipeRepository;
+
+    @Autowired
+    private RecipeDetailRepository recipeDetailRepository;
+
+    @Autowired
+    private RecipeInstructionRepository recipeInstructionRepository;
+
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup)
             return;
 
-        RawIngredient onion = new RawIngredient();
-        onion.setName("Onion");
-        rawIngredientRepository.save(onion);
+        Recipe pickledPeppers = new Recipe();
+        pickledPeppers.setRecipeName("Pickled Peppers");
+        recipeRepository.save(pickledPeppers);
+
+        RawIngredient pepper = new RawIngredient();
+        pepper.setName("Pepper");
+        rawIngredientRepository.save(pepper);
+
+        RawIngredient pickleJuice = new RawIngredient();
+        pickleJuice.setName("Pickle Juice");
+        rawIngredientRepository.save(pickleJuice);
 
         RawIngredient carrot = new RawIngredient();
         carrot.setName("Carrot");
@@ -56,51 +73,85 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         whole.setName("Whole");
         measurementRepository.save(whole);
 
+        Measurement jar = new Measurement();
+        jar.setName("Jar");
+        measurementRepository.save(jar);
+
         StatCard statCard = new StatCard();
-        statCard.setAuthor("Eric");
-        statCard.setPrepTime("Not Long");
-        statCard.setCookTime("Now");
-        statCard.setTotalTime("Just Make The Soup");
-        statCard.setYield("1 Serving. Too good not to eat it all.");
-        statCard.setMethod("With a Kitchen");
-        statCard.setCuisine("Good");
+        statCard.setAuthor("Peter Piper");
+        statCard.setPrepTime("30 minutes");
+        statCard.setCookTime("1 week");
+        statCard.setTotalTime("About a week");
+        statCard.setYield("15 servings");
+        statCard.setMethod("Pickling");
+        statCard.setCuisine("Pickled");
         statCardRepository.save(statCard);
 
-        RecipeCard soupList = new RecipeCard();
-        soupList.setStatCard(statCard);
-        soupList.setRecipeName("The Best Soup Ever");
-        recipeCardRepository.save(soupList);
+        RecipeCard pepperList = new RecipeCard();
+        pepperList.setStatCard(statCard);
+        pepperList.setRecipe(pickledPeppers);
+        recipeCardRepository.save(pepperList);
 
         InstructionCard instructionCard1 = new InstructionCard();
-        instructionCard1.setInstructionStep("Get Pots and Pans");
-        instructionCard1.setRecipeCard(soupList);
+        instructionCard1.setInstructionStep("Peter Piper Picked a Peck of Pickled Peppers;");
+        instructionCard1.setRecipeCard(pepperList);
         instructionCard1.setInstructionOrder(1);
         instructionCardRepository.save(instructionCard1);
 
         InstructionCard instructionCard2 = new InstructionCard();
-        instructionCard2.setInstructionStep("Meditate");
-        instructionCard2.setRecipeCard(soupList);
+        instructionCard2.setInstructionStep("A Peck of Pickled Peppers Peter Piper Picked!");
+        instructionCard2.setRecipeCard(pepperList);
         instructionCard2.setInstructionOrder(2);
         instructionCardRepository.save(instructionCard2);
 
         InstructionCard instructionCard3 = new InstructionCard();
-        instructionCard3.setInstructionStep("Let The Universe Guide You To Make The Best Soup");
-        instructionCard3.setRecipeCard(soupList);
+        instructionCard3.setInstructionStep("If Peter Piper Picked a Peck of Pickled Peppers,");
+        instructionCard3.setRecipeCard(pepperList);
         instructionCard3.setInstructionOrder(3);
         instructionCardRepository.save(instructionCard3);
 
-        IngredientCard soupCard = new IngredientCard();
-        soupCard.setRawIngredient(onion);
-        soupCard.setMeasurement(tbsp);
-        soupCard.setAmount(2);
-        soupCard.setRecipeCard(soupList);
-        ingredientCardRepository.save(soupCard);
+        InstructionCard instructionCard4 = new InstructionCard();
+        instructionCard4.setInstructionStep("Where's the Peck of Pickled Peppers Peter Piper Picked?");
+        instructionCard4.setRecipeCard(pepperList);
+        instructionCard4.setInstructionOrder(4);
+        instructionCardRepository.save(instructionCard4);
 
-        IngredientCard soupCard2 = new IngredientCard();
-        soupCard2.setRawIngredient(carrot);
-        soupCard2.setMeasurement(whole);
-        soupCard2.setAmount(5);
-        soupCard2.setRecipeCard(soupList);
-        ingredientCardRepository.save(soupCard2);
+        IngredientCard pepperCard = new IngredientCard();
+        pepperCard.setRawIngredient(pepper);
+        pepperCard.setMeasurement(whole);
+        pepperCard.setAmount(15);
+        pepperCard.setRecipeCard(pepperList);
+        ingredientCardRepository.save(pepperCard);
+
+        IngredientCard pepperCard2 = new IngredientCard();
+        pepperCard2.setRawIngredient(pickleJuice);
+        pepperCard2.setMeasurement(jar);
+        pepperCard2.setAmount(1);
+        pepperCard2.setRecipeCard(pepperList);
+        ingredientCardRepository.save(pepperCard2);
+
+        RecipeDetail recipeDetail = new RecipeDetail();
+        recipeDetail.setDetail("Once upon a time, Peter Piper Prepared a Peck of Pickled Peppers that were so tantilizingly delicious that he hid them from the world. Henceforth, everyone demanded to know \"Where's The Peck of Pickled Peppers Peter Piper Picked!?\"");
+        recipeDetail.setDetailOrder(1);
+        recipeDetail.setRecipe(pickledPeppers);
+        recipeDetailRepository.save(recipeDetail);
+
+        RecipeDetail recipeDetail2 = new RecipeDetail();
+        recipeDetail2.setDetail("Well. We don't know. But we've got the secret to make a batch of Pickled Peppers which are just as good!");
+        recipeDetail2.setDetailOrder(2);
+        recipeDetail2.setRecipe(pickledPeppers);
+        recipeDetailRepository.save(recipeDetail2);
+
+        RecipeInstruction recipeInstruction = new RecipeInstruction();
+        recipeInstruction.setInstruction("You'll need some whole Peppers, and the most delicious Pickle Juice you can find.");
+        recipeInstruction.setInstructionOrder(1);
+        recipeInstruction.setRecipe(pickledPeppers);
+        recipeInstructionRepository.save(recipeInstruction);
+
+        RecipeInstruction recipeInstruction2 = new RecipeInstruction();
+        recipeInstruction2.setInstruction("Then you'll put all the ingredients in a jar for a week. Yeah; it's that easy!");
+        recipeInstruction2.setInstructionOrder(2);
+        recipeInstruction2.setRecipe(pickledPeppers);
+        recipeInstructionRepository.save(recipeInstruction2);
     }
 }

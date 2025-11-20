@@ -15,13 +15,24 @@
         <h1>Too Many Cooks</h1>
     </div>
     <div class="content">
-        <div>History 1</div>
-        <div>History 2</div>
-        <div>History 3</div>
-        <div>Saucy Instructions 1</div>
-        <div>Saucy Instructions 2</div>
-        <div id="recipeCard">
-            <form method="post">
+        <form method="post">
+            <div id="recipeDetailInputs">
+                <h2>Recipe Details:</h2>
+                <a style='color:blue' onclick="addRecipeDetailInput()">Add Detail</a>
+                <div>
+                    <ul>
+                        <li><label> Detail : <br><textarea name="recipeDetails" class="detailedInstructionsText"></textarea></label></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="recipeInstructionInputs">
+                <h2>Recipe Instructions:</h2>
+                <a style='color:blue' onclick="addRecipeInstructionInput()">Add Instruction Step</a>
+                <ul>
+                    <li><label> Detailed Instruction : <br><textarea name="recipeInstructions" class="detailedInstructionsText"></textarea></label></li>
+                </ul>
+            </div>
+            <div id="recipeCard">
                 <div class="row" id="statPhotoCard">
                     <div id="statCard">
                         <div>
@@ -43,8 +54,8 @@
                         Image?
                     </div>
                 </div>
-                <div id="ingredientInputs">
-                    <a style='color:blue' onclick="addIngredientInput()">Add Ingredient</a><br>
+                <div id="ingredientCardInputs">
+                    <a style='color:blue' onclick="addIngredientCardInput()">Add Ingredient</a><br>
                     <div>
                         <ul>
                             <li><label> Ingredient : <input type="text" name="ingredient"/></label></li>
@@ -53,19 +64,19 @@
                         </ul>
                     </div>
                 </div>
-                <div id="instructionInputs">
-                    <a style='color:blue' onclick="addInstructionInput()">Add Instruction Step</a>
+                <div id="instructionCardInputs">
+                    <a style='color:blue' onclick="addInstructionCardInput()">Add Instruction Step</a>
                     <div>
                         <ul>
-                            <li><label> Instruction Step : <br><textarea name="instructions" class="addInstructionsText"></textarea></label></li>
+                            <li><label> Instruction Step : <br><textarea name="instructionCard" class="addInstructionsText"></textarea></label></li>
                         </ul>
                     </div>
                 </div>
                 <div>
                     <input type="submit" value="Add"/>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
     <div class="footer">
         Footer

@@ -35,7 +35,7 @@ public class User implements UserDetails {
     private Collection<Role> userRoles;
 
     @OneToMany(mappedBy = "user")
-    private Set<RecipeCard> recipeCards;
+    private Set<Recipe> recipes;
 
     public User() {
     }
@@ -69,12 +69,12 @@ public class User implements UserDetails {
         return null;
     }
 
-    public Set<RecipeCard> getRecipeCards() {
-        return recipeCards;
+    public Set<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipeCards(Set<RecipeCard> recipeCards) {
-        this.recipeCards = recipeCards;
+    public void setRecipeCards(Set<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
     @Override

@@ -1,5 +1,29 @@
-function addInstructionInput() {
-            const divEle = document.getElementById("instructionInputs");
+function addRecipeDetailInput() {
+    const divEle = document.getElementById("recipeDetailInputs");
+    var recipeDetailInput = document.createElement('div');
+    recipeDetailInput.innerHTML += `
+        <ul>
+            <li><label> Detail : <br><textarea name="recipeDetails" class="detailedInstructionsText"></textarea></label></li>
+        </ul>
+        <a style='color:blue' onclick='this.parentElement.remove()'>Remove This Detail</a>
+    `;
+    divEle.appendChild(recipeDetailInput);
+}
+
+function addRecipeInstructionInput() {
+    const divEle = document.getElementById("recipeInstructionInputs");
+    var recipeInstructionInput = document.createElement('div');
+    recipeInstructionInput.innerHTML += `
+                <ul>
+                    <li><label> Detailed Instruction : <br><textarea name="recipeInstructions" class="detailedInstructionsText"></textarea></label></li>
+                </ul>
+                <a style='color:blue' onclick='this.parentElement.remove()'>Remove This Instruction Step</a>
+    `;
+    divEle.appendChild(recipeInstructionInput)
+}
+
+function addInstructionCardInput() {
+            const divEle = document.getElementById("instructionCardInputs");
             var instructionInput = document.createElement('div');
             instructionInput.innerHTML += `
                 <ul>
@@ -10,8 +34,8 @@ function addInstructionInput() {
       divEle.appendChild(instructionInput);
 }
 
-function addIngredientInput() {
-            const divEle = document.getElementById("ingredientInputs");
+function addIngredientCardInput() {
+            const divEle = document.getElementById("ingredientCardInputs");
             var ingredientInput = document.createElement('div');
             ingredientInput.innerHTML += `
                     <ul>
