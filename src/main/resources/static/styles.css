@@ -111,6 +111,55 @@ li {
     background-color: #ccc;
 }
 
+.userFavoriteBar {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    text-align: center;
+}
+
+.userFavoritePhotoContainer {
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.userFavoritePhotoContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.upcomingRecipesBar {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    text-align: center;
+}
+
+.upcomingRecipe {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.upcomingRecipe a {
+    writing-mode: vertical-rl;
+}
+
+.upcomingRecipePhotoContainer {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.upcomingRecipePhotoContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 #recipeCard {
     display: flex;
     flex-direction: column;
