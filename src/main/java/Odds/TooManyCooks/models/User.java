@@ -37,6 +37,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private Set<Recipe> recipes;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Rating> ratings;
+
     public User() {
     }
 
@@ -71,6 +74,18 @@ public class User implements UserDetails {
 
     public Set<Recipe> getRecipes() {
         return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
     }
 
     public void setRecipeCards(Set<Recipe> recipes) {
