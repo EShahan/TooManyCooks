@@ -23,7 +23,26 @@
       <h2 id="recipeHeader" th:text="${recipe.recipeName}"></h2>
       <div class="row" id="statPhotoCard">
         <div id="statCard">
-          <div id="ratingCard">Rating Img Here?</div>
+          <div id="ratingCard">Rating Img Here?
+            <form method="post">
+              <label> One Star
+                <input type="radio" name="rating" value="1">
+              </label>
+              <label> Two Stars
+                <input type="radio" name="rating" value="2">
+              </label>
+              <label> Three Stars
+                <input type="radio" name="rating" value="3">
+              </label>
+              <label> Four Stars
+                <input type="radio" name="rating" value="4">
+              </label>
+              <label> Five Stars
+                <input type="radio" name="rating" value="5">
+              </label>
+              <input type="submit" value="Add"/>
+            </form>
+          </div>
           <p th:utext="'&lt;strong&gt;Author: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.author}"></p>
           <p th:utext="'&lt;strong&gt;Prep Time: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.prepTime}"></p>
           <p th:utext="'&lt;strong&gt;Cook Time: &lt;/strong&gt;' + ${recipe.recipeCard.statCard.cookTime}"></p>

@@ -33,6 +33,8 @@ public class RecipeController {
     private RecipeDetailRepository recipeDetailRepository;
     @Autowired
     private RecipeInstructionRepository recipeInstructionRepository;
+    @Autowired
+    private RatingsRepository ratingsRepository;
 
     @GetMapping("ExampleRecipe")
     public String ExampleRecipe(Model model) {
@@ -137,6 +139,21 @@ public class RecipeController {
     }
     @GetMapping("view/{id}")
     public String displayView(Model model, @PathVariable Integer id) {
+        model.addAttribute("recipe", recipeRepository.findRecipeById(id));
+        model.addAttribute("recipeInstructions", recipeInstructionRepository.findRecipeInstructionSetByRecipeIdOrderAsc(id));
+        model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
+        model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
+        model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
+        return "recipe/examplerecipe.html";
+    }
+
+    @PostMapping("view/{id}")
+    public String processViewRating(Model model, @PathVariable Integer id, @RequestParam Integer rating, @AuthenticationPrincipal UserDetails userDetails) {
+        Rating newRating = new Rating();
+        newRating.setRating(rating);
+        newRating.setRecipeCard(recipeCardRepository.findRecipeCardById(id));
+        newRating.setUser(userRepository.findUserByUsername(userDetails.getUsername()));
+        ratingsRepository.save(newRating);
         model.addAttribute("recipe", recipeRepository.findRecipeById(id));
         model.addAttribute("recipeInstructions", recipeInstructionRepository.findRecipeInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));

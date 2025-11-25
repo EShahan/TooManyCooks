@@ -4,31 +4,22 @@ import jakarta.persistence.*;
 
 @Entity
 public class Rating {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @ManyToOne
+    @EmbeddedId
+    private RatingId id;
+    @ManyToOne @MapsId("recipeCardId")
     private RecipeCard recipeCard;
-
-    @ManyToOne
+    @ManyToOne @MapsId("userId")
     private User user;
-
-    private int rating;
-
+    private Integer rating;
     public Rating() {
-
+        id = new RatingId();
     }
 
-    public Rating(int rating) {
-        this.rating = rating;
-    }
-
-    public Integer getId() {
+    public RatingId getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(RatingId id) {
         this.id = id;
     }
 
@@ -48,11 +39,11 @@ public class Rating {
         this.user = user;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 }
