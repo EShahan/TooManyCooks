@@ -149,11 +149,20 @@ public class RecipeController {
 
     @PostMapping("view/{id}")
     public String processViewRating(Model model, @PathVariable Integer id, @RequestParam Integer rating, @AuthenticationPrincipal UserDetails userDetails) {
-        Rating newRating = new Rating();
-        newRating.setRating(rating);
-        newRating.setRecipeCard(recipeCardRepository.findRecipeCardById(id));
-        newRating.setUser(userRepository.findUserByUsername(userDetails.getUsername()));
-        ratingsRepository.save(newRating);
+        ratingsRepository.findRatingByUserAndRecipeCard(userRepository.findUserByUsername(userDetails.getUsername()).getId(), id).ifPresentOrElse(
+                (existingRating) -> {
+                    existingRating.setRating(rating);
+                    ratingsRepository.save(existingRating);
+                }
+                ,
+                () -> {
+                    Rating newRating = new Rating();
+                    newRating.setRating(rating);
+                    newRating.setRecipeCard(recipeCardRepository.findRecipeCardById(id));
+                    newRating.setUser(userRepository.findUserByUsername(userDetails.getUsername()));
+                    ratingsRepository.save(newRating);
+                }
+        );
         model.addAttribute("recipe", recipeRepository.findRecipeById(id));
         model.addAttribute("recipeInstructions", recipeInstructionRepository.findRecipeInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
