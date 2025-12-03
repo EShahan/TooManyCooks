@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
   <link th:href="@{/styles.css}" rel="stylesheet">
+  <script type="text/javascript" th:src="@{/js/loginBlock.js}"></script>
 </head>
 <body>
 <div class="wrapper">
-  <div th:replace="~{fragments :: navbar}">
+  <div sec:authorize="isAnonymous()" th:replace="~{fragments :: anonymous-navbar}">
+    Navbar
+  </div>
+  <div sec:authorize="isAuthenticated()" th:replace="~{fragments :: authenticated-navbar}">
     Navbar
   </div>
   <div th:replace="~{fragments :: header}">
     Header
   </div>
+  <div th:replace="~{fragments :: loginBlock}"></div>
   <div class="content">
     <h1 th:text="${recipe.recipeName}"></h1>
     <h2>Recipe Details:</h2>
@@ -24,7 +29,7 @@
       <div class="row" id="statPhotoCard">
         <div id="statCard">
           <div id="ratingCard">Rating Img Here?
-            <form method="post">
+            <form method="post" sec:authorize="isAuthenticated()">
               <label> One Star
                 <input type="radio" name="rating" value="1">
               </label>
