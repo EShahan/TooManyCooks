@@ -28,6 +28,15 @@
         </li>
       </ul>
     </div>
+    <div>
+      <h2>Ratings By This User</h2>
+      <ul>
+        <li th:each="rating : ${ratings}">
+          <div th:text="${rating.recipeCard.recipe.recipeName}"></div>
+          <div th:text="${rating.rating}"></div>
+        </li>
+      </ul>
+    </div>
   </div>
   <div th:replace="~{fragments :: footer}">
     Footer

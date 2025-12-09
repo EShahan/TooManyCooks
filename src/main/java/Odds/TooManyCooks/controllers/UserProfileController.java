@@ -31,11 +31,14 @@ public class UserProfileController {
     private RecipeDetailRepository recipeDetailRepository;
     @Autowired
     private RecipeInstructionRepository recipeInstructionRepository;
+    @Autowired
+    private RatingsRepository ratingsRepository;
 
     @GetMapping("{id}")
     public String index(Model model, @PathVariable Integer id) {
         model.addAttribute("user", userRepository.findUserById(id));
         model.addAttribute("recipes", recipeRepository.findRecipesByUserId(id));
+        model.addAttribute("ratings", ratingsRepository.findRatingsByUser(id));
         return "user/index.html";
     }
 }

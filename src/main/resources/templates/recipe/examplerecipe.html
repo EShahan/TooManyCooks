@@ -29,6 +29,7 @@
       <div class="row" id="statPhotoCard">
         <div id="statCard">
           <div id="ratingCard">Rating Img Here?
+            <div th:text="${averageRating}"></div>
             <form method="post" sec:authorize="isAuthenticated()">
               <label> One Star
                 <input type="radio" name="rating" value="1">

@@ -144,6 +144,7 @@ public class RecipeController {
         model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
         model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
+        model.addAttribute("averageRating", ratingsRepository.findAverageRatingForRecipe(id));
         return "recipe/examplerecipe.html";
     }
 
@@ -168,6 +169,7 @@ public class RecipeController {
         model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
         model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
+        model.addAttribute("averageRating", ratingsRepository.findAverageRatingForRecipe(id));
         return "recipe/examplerecipe.html";
     }
 }
