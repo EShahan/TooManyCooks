@@ -34,5 +34,5 @@ public interface RatingsRepository extends CrudRepository<Rating, Integer> {
             "FROM rating \n" +
             "WHERE rating.recipe_card_id = :recipeCardId",
             nativeQuery = true)
-    Float findAverageRatingForRecipe(@Param("recipeCardId") Integer recipeCardId);
+    Optional<Float> findAverageRatingForRecipe(@Param("recipeCardId") Integer recipeCardId);
 }

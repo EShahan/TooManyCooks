@@ -144,7 +144,15 @@ public class RecipeController {
         model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
         model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
-        model.addAttribute("averageRating", ratingsRepository.findAverageRatingForRecipe(id));
+        ratingsRepository.findAverageRatingForRecipe(id).ifPresentOrElse(
+                (existingRating) -> {
+                    model.addAttribute("averageRating", existingRating);
+                }
+                ,
+                () -> {
+                    model.addAttribute("averageRating", 0);
+                }
+        );
         return "recipe/examplerecipe.html";
     }
 
@@ -169,7 +177,15 @@ public class RecipeController {
         model.addAttribute("recipeDetails", recipeDetailRepository.findRecipeDetailSetByRecipeIdOrderAsc(id));
         model.addAttribute("cardInstructions", instructionCardRepository.findInstructionSetByRecipeIdOrderAsc(id));
         model.addAttribute("ingredients", ingredientCardRepository.findIngredientCardByList(id));
-        model.addAttribute("averageRating", ratingsRepository.findAverageRatingForRecipe(id));
+        ratingsRepository.findAverageRatingForRecipe(id).ifPresentOrElse(
+                (existingRating) -> {
+                    model.addAttribute("averageRating", existingRating);
+                }
+                ,
+                () -> {
+                    model.addAttribute("averageRating", 0);
+                }
+        );
         return "recipe/examplerecipe.html";
     }
 }
